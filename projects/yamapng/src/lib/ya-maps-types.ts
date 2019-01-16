@@ -36,6 +36,7 @@ export interface Marker extends MVCObject {
   iconImageHref: any;
   iconImageSize: any;
   iconImageOffset: any;
+  geometry: any;
   setMap(map: YandexMap): void;
   setPosition(latLng: LatLng | LatLngLiteral): void;
 }

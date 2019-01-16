@@ -59,6 +59,24 @@ export class YaMarker implements OnChanges, OnDestroy {
     if (changes['showInfo']) {
       this._markerManager.showBalloon(this);
     }
+    if (changes['latitude'] || changes['longitude']) {
+      this._markerManager.getNativeMarker(this).then((m: Marker) => {
+        let lt: number;
+        let lg: number;
+        const coords = m.geometry.getCoordinates();
+        if (changes['latitude']) {
+          lt = changes['latitude'].currentValue;
+        } else {
+          lt = coords[0];
+        }
+        if (changes['longitude']) {
+          lg = changes['longitude'].currentValue;
+        } else {
+          lg = coords[1];
+        }
+        m.geometry.setCoordinates([lt, lg]);
+      });
+    }
   }
 
   public ngOnDestroy() {
