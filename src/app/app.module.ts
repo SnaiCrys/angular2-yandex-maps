@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { YamapngModule } from 'projects/yamapng/src/public_api';
 import { YaCoreModule } from 'projects/yamapng/src/lib/core.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { YaCoreModule } from 'projects/yamapng/src/lib/core.module';
   imports: [
     BrowserModule,
     YamapngModule,
+    HttpClientModule,
     YaCoreModule.forRoot({
       apiKey: ''
     })

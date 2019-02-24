@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MapClickMouseEvent, YamapngService } from 'projects/yamapng/src/public_api';
 
 @Component({
   selector: 'app-root',
@@ -89,4 +90,17 @@ export class AppComponent {
     }
   ];
 
+  constructor(private geocoder: YamapngService) {}
+
+  markerClick($event: MapClickMouseEvent) {
+    const lat = $event.lat;
+    const lng = $event.lng;
+    console.log(lat, lng);
+    this.geocoder.getAdressFromCoords(lat, lng).subscribe((data: any) => {
+      console.log(
+        data.response.GeoObjectCollection.featureMember[0].GeoObject.description,
+        data.response.GeoObjectCollection.featureMember[0].GeoObject.name
+      );
+    });
+  }
 }
