@@ -26,11 +26,12 @@ import * as mapTypes from '../ya-maps-types';
     ObjectManagerManager
   ],
   template: `
-    <div class="map-container-inner" id="map" >
+    <div class="map-container-inner" id="map">
       <ng-content></ng-content>
     </div>
   `
 })
+// class="map-container-inner" id="map"
 // tslint:disable-next-line:component-class-suffix
 export class YaMap implements OnInit, OnChanges {
 
@@ -45,6 +46,7 @@ export class YaMap implements OnInit, OnChanges {
   // tslint:disable-next-line:max-line-length
   @Output() public mapClick: EventEmitter<mapTypes.MapClickMouseEvent> = new EventEmitter<mapTypes.MapClickMouseEvent>();
   @Output() public actionTick: EventEmitter<mapTypes.MapClickMouseEvent> = new EventEmitter<mapTypes.MapClickMouseEvent>();
+  @Output() public boundschange: EventEmitter<mapTypes.MapClickMouseEvent> = new EventEmitter<mapTypes.MapClickMouseEvent>();
 
   public mapInit = false;
 
@@ -109,6 +111,21 @@ export class YaMap implements OnInit, OnChanges {
     const events: Event[] = [
       { name: 'actiontick', emitter: this.actionTick }
     ];
+
+    const boundschanges: Event[] = [
+      { name: 'boundschange', emitter: this.boundschange }
+    ];
+
+    boundschanges.forEach((e: Event) => {
+      const s = this._mapsWrapper.subscribeToMapEvent<{ latLng: any }>(e.name).subscribe(
+        (event: any) => {
+          this._mapsWrapper.getCenter().then((coords: any) => {
+            const value = { lat: coords[0], lng: coords[1] } as mapTypes.MapClickMouseEvent;
+            e.emitter.emit(value);
+          });
+        });
+      this._observableSubscriptions.push(s);
+    });
 
     clickEvents.forEach((e: Event) => {
       const s = this._mapsWrapper.subscribeToMapEvent<{ latLng: any }>(e.name).subscribe(
