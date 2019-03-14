@@ -153,4 +153,12 @@ export class YaMapsAPIWrapper {
         objectManager.setFilter(filter);
     }
 
+    public addCrosshair() {
+        return this._map.then((map: mapTypes.YandexMap) => {
+            const style = map.panes.get('events').getElement().style;
+            style.background = 'url("http://t1.rbxcdn.com/03e863d541704e442033d597945ab2e6") no-repeat center';
+            style.backgroundSize = '100px';
+        });
+    }
+
 }

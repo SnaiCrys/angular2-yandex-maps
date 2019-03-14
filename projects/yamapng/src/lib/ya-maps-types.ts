@@ -7,6 +7,7 @@ export interface YandexMap extends MVCObject {
   // constructor(el: HTMLElement, opts?: MapOptions): void;
   events: any;
   geoObjects: any;
+  panes: any;
   setCenter(param: any[]): void;
   getCenter(): any;
   panTo(points: any[], options: any[]): void;

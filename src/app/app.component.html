@@ -1,11 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
+  <input type="text" id="suggest" class="input" placeholder="Введите адрес">
+  <ng-auto-complete (selected)="selected($event)" [group]="group" (ngModelChange)="modelChanged($event)"></ng-auto-complete>
   <lib-yamapng>
     </lib-yamapng>  
     <div class="map">
         <ya-map
           [latitude]="55.76"
           [longitude]="37.64"
+          [crosshair] = true
           (mapClick)="markerClick($event)"
           >
           <ya-marker *ngFor="let m of markers; let i = index"

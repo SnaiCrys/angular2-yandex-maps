@@ -43,6 +43,7 @@ export class YaMap implements OnInit, OnChanges {
   @Input() public mapType: any = 'yandex#map';
   @Input() public controls: any[] = null;
   @Input() public panToObjects: mapTypes.PanToObjects;
+  @Input() public crosshair: boolean;
   // tslint:disable-next-line:max-line-length
   @Output() public mapClick: EventEmitter<mapTypes.MapClickMouseEvent> = new EventEmitter<mapTypes.MapClickMouseEvent>();
   @Output() public actionTick: EventEmitter<mapTypes.MapClickMouseEvent> = new EventEmitter<mapTypes.MapClickMouseEvent>();
@@ -80,6 +81,10 @@ export class YaMap implements OnInit, OnChanges {
         center: [this.latitude, this.longitude], zoom: this.zoom, type: this.mapType
       });
 
+    }
+
+    if (this.crosshair) {
+      this._mapsWrapper.addCrosshair();
     }
 
     this._handleMapMouseEvents();
