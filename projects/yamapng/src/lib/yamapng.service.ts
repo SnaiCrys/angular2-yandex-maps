@@ -1,10 +1,9 @@
-import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import {
   LAZY_MAPS_API_CONFIG,
   YaMapsAPILoaderConfigLiteral,
 } from './services/ya-maps-loader';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 declare var ymaps: any;
 
@@ -26,11 +25,11 @@ export class YamapngService {
     }&format=json&`;
   }
 
-  getAdressFromCoords(lat, lng) {
+  getAddressFromCoords(lat, lng) {
     return this.http.get(this.url + 'geocode=' + lng + `,` + lat);
   }
 
-  getCoordsFromAdress(adress) {
+  getCoordsFromAddress(adress) {
     return this.http.get(this.url + 'geocode=' + adress);
   }
 
