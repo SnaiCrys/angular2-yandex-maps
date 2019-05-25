@@ -39,6 +39,12 @@ export class YaMapsAPIWrapper {
         return res;
     }
 
+    public destroyMap() {
+        this._map.then((map: mapTypes.YandexMap) => {
+            map.destroy();
+        });
+    }
+
     public setCenter(latitude: number, longitude: number) {
         this._map.then((map: mapTypes.YandexMap) => {
             map.setCenter([latitude, longitude]);

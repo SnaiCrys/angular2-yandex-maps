@@ -37,7 +37,7 @@ export class YaMapsAPILoader {
         script.defer = true;
         script.id = 'YaScript';
         const callbackName = `angular2YAMapsAPILoader`;
-        script.src = `https://api-maps.yandex.ru/2.1/?apikey=${this.config.apiKey}&lang=ru_RU`;
+        script.src = `https://api-maps.yandex.ru/2.1.73/?apikey=${this.config.apiKey}&lang=ru_RU`;
         // tslint:disable-next-line:ban-types
         this._scriptLoadingPromise = new Promise<void>((resolve: Function, reject: Function) => {
             script.onload = () => { resolve(); };

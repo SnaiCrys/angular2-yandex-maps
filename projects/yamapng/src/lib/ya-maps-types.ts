@@ -12,6 +12,7 @@ export interface YandexMap extends MVCObject {
   getCenter(): any;
   panTo(points: any[], options: any[]): void;
   removeOverlay(overlay: any): void;
+  destroy(): void;
 }
 
 export interface LatLng {

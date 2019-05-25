@@ -33,7 +33,7 @@ import * as mapTypes from '../ya-maps-types';
 })
 // class="map-container-inner" id="map"
 // tslint:disable-next-line:component-class-suffix
-export class YaMap implements OnInit, OnChanges {
+export class YaMap implements OnInit, OnDestroy, OnChanges {
 
   @Input() public longitude = 0;
   @Input() public latitude = 0;
@@ -60,6 +60,11 @@ export class YaMap implements OnInit, OnChanges {
     const container = this._elem.nativeElement.querySelector('.map-container-inner');
     this._initMapInstance(container);
     this.mapInit = true;
+  }
+
+  public ngOnDestroy(): void {
+    console.log('map del');
+    this._mapsWrapper.destroyMap();
   }
 
   public ngOnChanges(changes: SimpleChanges) {
