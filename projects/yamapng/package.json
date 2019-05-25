@@ -1,6 +1,6 @@
 {
   "name": "ayamap",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "readme": "README.md",
   "description": "yandex-maps-directive",
   "peerDependencies": {
