@@ -126,7 +126,7 @@ export class AppComponent implements OnInit {
 
     this.geocoder.createSuggest('suggest');
 
-    this.geocoder.getAdressFromCoords(lat, lng).subscribe((data: any) => {
+    this.geocoder.getAddressFromCoords(lat, lng).subscribe((data: any) => {
       console.log(
         data.response.GeoObjectCollection.featureMember[0].GeoObject
           .description,

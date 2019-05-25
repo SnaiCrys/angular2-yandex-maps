@@ -28,7 +28,9 @@ export class YaMapsAPIWrapper {
         const res = this._loader.load().then(() => {
             const create = () => setTimeout(() => {
                 if (ymaps.Map) {
-                    const map = new ymaps.Map(el, mapOptions);
+                    const map = new ymaps.Map(el, mapOptions, {
+                        suppressMapOpenBlock: true
+                    });
                     this._mapResolver(map as mapTypes.YandexMap);
                 } else {
                     create();
